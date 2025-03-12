@@ -111,7 +111,6 @@ async function loadLazy(doc) {
 }
 
 const fetchAllChannels = async () => {
-  const token = "";
   let url = "https://slack.com/api/conversations.list";
   let cursor = null;
   let allChannels = [];
@@ -120,7 +119,7 @@ const fetchAllChannels = async () => {
     const response = await fetch(url + (cursor ? `?cursor=${cursor}` : ""), {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        "Authorization": `Bearer `,
         "Content-Type": "application/json"
       }
     });
