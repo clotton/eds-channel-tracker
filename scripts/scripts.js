@@ -110,6 +110,35 @@ async function loadLazy(doc) {
   loadFonts();
 }
 
+const fetchAllChannels = async () => {
+  const token = "xoxb-3277425470320-8593856853154-xTQKD2VAwgUQFMJpoipgfnEM";
+  let url = "https://slack.com/api/conversations.list";
+  let cursor = null;
+  let allChannels = [];
+
+  do {
+    const response = await fetch(url + (cursor ? `?cursor=${cursor}` : ""), {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const data = await response.json();
+
+    if (!data.ok) {
+      console.error("Error fetching channels:", data.error);
+      return;
+    }
+
+    allChannels = allChannels.concat(data.channels);
+    cursor = data.response_metadata?.next_cursor || null;
+  } while (cursor);
+
+  console.log("Total channels found:", allChannels.length);
+};
+
 /**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
@@ -124,6 +153,7 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+  fetchAllChannels();
 }
 
 loadPage();
