@@ -111,7 +111,7 @@ async function loadLazy(doc) {
 }
 
 const fetchAllChannels = async () => {
-  const token = "xoxb-3277425470320-8593856853154-xTQKD2VAwgUQFMJpoipgfnEM";
+  const token = "";
   let url = "https://slack.com/api/conversations.list";
   let cursor = null;
   let allChannels = [];
