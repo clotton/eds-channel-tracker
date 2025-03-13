@@ -8,19 +8,19 @@
   <script src="/scripts/aem.js" type="module"></script>
   <script src="/scripts/scripts.js" type="module"></script>
   <link rel="stylesheet" href="/styles/styles.css" />
-  <script src="/slack-admin/teams.js" type="module"></script>
-  <link rel="stylesheet" href="/slack-admin/teams.css" />
+  <script src="/slack-admin/slack.js" type="module"></script>
+  <link rel="stylesheet" href="/slack-admin/slack.css" />
 </head>
 
-<body class="teams-admin">
+<body class="slack-admin">
   <header></header>
   <main>
     <!-- TITLE -->
     <div>
-      <h1>Manage teams</h1>
+      <h1>EDS Slack Channels</h1>
     </div>
 
-    <!-- TEAMS FORM -->
+    <!-- Slack Channels Form -->
     <div>
       <form>
         <div class="form-field">
@@ -38,13 +38,13 @@
           </div>
         </div>
         <p class="button-wrapper">
-          <button type="click" id="myteams" class="button">View teams</button>
+          <button type="click" id="myslackchannels" class="button">View Slack Channels</button>
         </p>
       </form>
     </div>
 
-    <!-- TEAMS CONTAINER -->
-    <div id="teams-container">
+    <!-- Slack Channels Container -->
+    <div id="slack-channels-container">
     </div>
 
   </main>

@@ -1,13 +1,13 @@
-.teams-admin #teams-admin-form {
+.slack-admin #slack-admin-form {
   display: grid;
   gap: var(--spacing-s);
 }
 
-.teams-admin #teams-admin-form .button-wrapper {
+.slack-admin #slack-admin-form .button-wrapper {
   align-self: center;
 }
 
-.teams-admin .spinner {
+.slack-admin .spinner {
   width: 48px;
   height: 48px;
   border: 5px solid var(--blue-600);
@@ -24,7 +24,7 @@
   100% { transform: rotate(360deg); }
 }
 
-.teams-admin button .spinner {
+.slack-admin button .spinner {
   width: 20px;
   height: 20px;
 }

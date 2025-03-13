@@ -1,8 +1,8 @@
 import { API_ENDPOINT } from './config.js';
 
 /* eslint-disable no-alert */
-const myteams = document.getElementById('myteams');
-const teamsContainer = document.getElementById('teams-container');
+const myteams = document.getElementById('myslackchannels');
+const teamsContainer = document.getElementById('slack-channels-container');
 
 const key = document.getElementById('key');
 const email = document.getElementById('email');
@@ -68,7 +68,7 @@ const displayTeams = async () => {
     teamsContainer.innerHTML = '<p>No teams found - invite user first.</p>';
     return;
   }
-  
+
   const all = await getAllTeams();
   all.sort((a, b) => a.displayName.localeCompare(b.displayName));
 
@@ -82,7 +82,7 @@ const displayTeams = async () => {
     const title = document.createElement('h4');
     title.textContent = team.displayName;
     li.appendChild(title);
-    
+
     const description = document.createElement('p');
     description.textContent = team.description;
     li.appendChild(description);
