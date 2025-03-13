@@ -4,7 +4,7 @@ import { API_ENDPOINT } from './config.js';
 const allSlackChannels = document.getElementById('myslackchannels');
 const slackChannelsContainer = document.getElementById('slack-channels-container');
 
-const key = document.getElementById('key');
+const key = document.getElementById('api_key');
 
 const persistFormFields = () => {
   localStorage.setItem('key', key.value);
