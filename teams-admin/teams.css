@@ -1,4 +1,4 @@
-@import './teams-admin.css';
+@import 'teams-admin/teams-admin.css';
 
 .teams-admin #teams-container {
   padding: 0 var(--horizontal-spacing);
