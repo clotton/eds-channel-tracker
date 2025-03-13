@@ -1,4 +1,4 @@
-@import 'teams-admin/teams-admin.css';
+@import 'slack-admin/teams-admin.css';
 
 .teams-admin #report-container {
   padding: 0 var(--horizontal-spacing);
