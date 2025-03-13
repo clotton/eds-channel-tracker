@@ -1,4 +1,4 @@
-@import 'slack-admin/slack-admin.css';
+@import './slack-admin.css';
 
 .slack-admin #slack-channels-container {
   padding: 0 var(--horizontal-spacing);
