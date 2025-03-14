@@ -44,11 +44,16 @@ const displayChannels = async () => {
   slackChannelsContainer.innerHTML = '<span class="spinner"></span>';
 
   const all = await getAllSlackChannels();
-  all.sort((a, b) => a.name.localeCompare(b.name));
+
+  const filteredChannels = all.filter(item =>
+    item.purpose?.value?.includes("Edge Delivery")
+  );
+
+  filteredChannels.sort((a, b) => a.name.localeCompare(b.name));
 
   const ul = document.createElement('ul');
 
-  all.forEach(channel => {
+  filteredChannels.forEach(channel => {
     const li = document.createElement('li');
 
     const title = document.createElement('h4');
