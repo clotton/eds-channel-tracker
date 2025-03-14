@@ -49,7 +49,6 @@ const displayChannels = async () => {
   const ul = document.createElement('ul');
 
   all.forEach(channels => {
-    const found = channels.find(c => c.name === channel.name);
     const li = document.createElement('li');
 
     const title = document.createElement('h4');
@@ -62,23 +61,6 @@ const displayChannels = async () => {
 
     ul.appendChild(li);
 
-    li.addEventListener('click', () => {
-      if (found) {
-        if (li.classList.contains('remove')) {
-          li.classList.remove('remove');
-        } else {
-          li.classList.add('remove');
-        }
-      } else {
-        if (li.classList.contains('add')) {
-          li.classList.remove('add');
-        } else {
-          li.classList.add('add');
-        }
-      }
-
-      refreshSaveButton();
-    });
   });
 
   const button = document.createElement('button');
