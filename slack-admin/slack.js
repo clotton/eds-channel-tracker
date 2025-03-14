@@ -44,21 +44,20 @@ const displayChannels = async () => {
   slackChannelsContainer.innerHTML = '<span class="spinner"></span>';
 
   const all = await getAllSlackChannels();
-  all.sort((a, b) => a.displayName.localeCompare(b.displayName));
+  all.sort((a, b) => a.name.localeCompare(b.name));
 
   const ul = document.createElement('ul');
 
   all.forEach(channels => {
-    const found = channels.find(c => c.displayName === channel.displayName);
+    const found = channels.find(c => c.name === channel.name);
     const li = document.createElement('li');
-    li.classList.add(found ? 'member' : 'not-member');
 
     const title = document.createElement('h4');
-    title.textContent = channel.displayName;
+    title.textContent = channel.name;
     li.appendChild(title);
 
     const description = document.createElement('p');
-    description.textContent = channel.description;
+    description.textContent = channel.purpose.value;
     li.appendChild(description);
 
     ul.appendChild(li);
@@ -107,8 +106,8 @@ const displayChannels = async () => {
     const remove = slackChannelsContainer.querySelectorAll('.remove');
 
     remove.forEach(async (li) => {
-      const displayName = li.querySelector('h4').textContent;
-      body.remove.push(displayName);
+      const name = li.querySelector('h4').textContent;
+      body.remove.push(name);
     });
 
     displayChannels();
