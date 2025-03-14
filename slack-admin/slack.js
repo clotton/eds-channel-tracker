@@ -48,7 +48,7 @@ const displayChannels = async () => {
 
   const ul = document.createElement('ul');
 
-  all.forEach(channels => {
+  all.forEach(channel => {
     const li = document.createElement('li');
 
     const title = document.createElement('h4');
