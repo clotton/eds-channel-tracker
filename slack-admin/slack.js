@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from './config.js';
+import {API_ENDPOINT} from './config.js';
 
 /* eslint-disable no-alert */
 const allSlackChannels = document.getElementById('myslackchannels');
@@ -19,26 +19,12 @@ const getAllSlackChannels = async () => {
     });
 
     if (response.ok) {
-      const channels = await response.json();
-      return channels;
+      return await response.json();
     }
-  } catch (e) {};
+  } catch (e) {}
 
   return [];
 }
-
-const refreshSaveButton = () => {
-  const button = document.getElementById('save');
-
-  const add = slackChannelsContainer.querySelectorAll('.add');
-  const remove = slackChannelsContainer.querySelectorAll('.remove');
-
-  if (add.length || remove.length) {
-    button.removeAttribute('disabled');
-  } else {
-    button.setAttribute('disabled', true);
-  }
-};
 
 const displayChannels = async () => {
   slackChannelsContainer.innerHTML = '<span class="spinner"></span>';
@@ -64,6 +50,10 @@ const displayChannels = async () => {
     description.textContent = channel.purpose.value;
     li.appendChild(description);
 
+    const lastActivity = document.createElement('p');
+    lastActivity.textContent = `Last Activity: ${new Date('2023-10-01T12:00:00Z').toLocaleString()}`;
+    li.appendChild(lastActivity);
+
     ul.appendChild(li);
 
   });
@@ -84,20 +74,19 @@ const displayChannels = async () => {
       remove: [],
     };
 
-    add.forEach(async (li) => {
+    for (const li of add) {
       const displayName = li.querySelector('h4').textContent;
       body.add.push(displayName);
-    });
-
+    }
 
     const remove = slackChannelsContainer.querySelectorAll('.remove');
 
-    remove.forEach(async (li) => {
+    for (const li of remove) {
       const name = li.querySelector('h4').textContent;
       body.remove.push(name);
-    });
+    }
 
-    displayChannels();
+    await displayChannels();
   });
 
   const wrapper = document.createElement('p');
@@ -117,7 +106,7 @@ allSlackChannels.addEventListener('click', async (e) => {
   e.preventDefault();
   persistFormFields();
 
-  displayChannels();
+  await displayChannels();
 });
 
 key.value = localStorage.getItem('key') || '';

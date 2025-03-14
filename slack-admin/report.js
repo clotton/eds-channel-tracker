@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from './config.js';
+import {API_ENDPOINT} from './config.js';
 
 const button = document.getElementById('view');
 const reportContainer = document.getElementById('report-container');
@@ -18,10 +18,9 @@ const getAllTeams = async () => {
     });
 
     if (response.ok) {
-      const teams = await response.json();
-      return teams;
+      return await response.json();
     }
-  } catch (e) {};
+  } catch (e) {}
 
   return [];
 }
@@ -30,7 +29,7 @@ const getReport = async () => {
   const report = [];
   try {
     const teams = await getAllTeams();
-    
+
     const promises = await Promise.all(teams.map(async team => {
       const response = await fetch(`${API_ENDPOINT}/teams/${team.displayName}/report`, {
         headers: {
@@ -45,7 +44,7 @@ const getReport = async () => {
       return null;
     }));
     await Promise.all(promises);
-  } catch (e) {};
+  } catch (e) {}
 
   return report;
 }
@@ -77,7 +76,7 @@ const viewReport = async () => {
     reportContainer.innerHTML = '<p>Nothing to report.</p>';
     return;
   }
-  
+
   all.sort((a, b) => a.displayName.localeCompare(b.displayName));
 
   const table = document.createElement('table');
@@ -167,7 +166,7 @@ button.addEventListener('click', async (e) => {
   e.preventDefault();
   persistFormFields();
 
-  viewReport();
+  await viewReport();
 });
 
 key.value = localStorage.getItem('key') || '';
