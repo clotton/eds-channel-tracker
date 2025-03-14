@@ -44,42 +44,28 @@ const displayChannels = async () => {
   slackChannelsContainer.innerHTML = '<span class="spinner"></span>';
 
   const all = await getAllSlackChannels();
-  all.sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+  const filteredChannels = all.filter(item =>
+    item.purpose?.value?.includes("Edge Delivery")
+  );
+
+  filteredChannels.sort((a, b) => a.name.localeCompare(b.name));
 
   const ul = document.createElement('ul');
 
-  all.forEach(channels => {
-    const found = channels.find(c => c.displayName === channel.displayName);
+  filteredChannels.forEach(channel => {
     const li = document.createElement('li');
-    li.classList.add(found ? 'member' : 'not-member');
 
     const title = document.createElement('h4');
-    title.textContent = channel.displayName;
+    title.textContent = channel.name;
     li.appendChild(title);
 
     const description = document.createElement('p');
-    description.textContent = channel.description;
+    description.textContent = channel.purpose.value;
     li.appendChild(description);
 
     ul.appendChild(li);
 
-    li.addEventListener('click', () => {
-      if (found) {
-        if (li.classList.contains('remove')) {
-          li.classList.remove('remove');
-        } else {
-          li.classList.add('remove');
-        }
-      } else {
-        if (li.classList.contains('add')) {
-          li.classList.remove('add');
-        } else {
-          li.classList.add('add');
-        }
-      }
-
-      refreshSaveButton();
-    });
   });
 
   const button = document.createElement('button');
@@ -107,8 +93,8 @@ const displayChannels = async () => {
     const remove = slackChannelsContainer.querySelectorAll('.remove');
 
     remove.forEach(async (li) => {
-      const displayName = li.querySelector('h4').textContent;
-      body.remove.push(displayName);
+      const name = li.querySelector('h4').textContent;
+      body.remove.push(name);
     });
 
     displayChannels();
