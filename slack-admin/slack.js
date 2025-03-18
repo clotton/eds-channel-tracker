@@ -22,11 +22,7 @@ const displayChannels = async () => {
 
   const all = await getAllSlackChannels();
 
-  const filteredChannels = all.filter(item =>
-    item.purpose?.value?.includes("Edge Delivery")
-  );
-
-  filteredChannels.sort((a, b) => a.name.localeCompare(b.name));
+  all.sort((a, b) => a.name.localeCompare(b.name));
 
   const ul = document.createElement('ul');
 
