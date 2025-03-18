@@ -26,7 +26,7 @@ const displayChannels = async () => {
 
   const ul = document.createElement('ul');
 
-  filteredChannels.forEach(channel => {
+  all.forEach(channel => {
     const li = document.createElement('li');
 
     const title = document.createElement('h4');
@@ -38,8 +38,10 @@ const displayChannels = async () => {
     li.appendChild(description);
 
     ul.appendChild(li);
-
   });
+
+  slackChannelsContainer.innerHTML = '';
+  slackChannelsContainer.appendChild(ul);
 }
 
 /**
